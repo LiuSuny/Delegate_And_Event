@@ -55,7 +55,7 @@ namespace Collect_Delegate
             Console.WriteLine("++++++++++++++++++");
 
             ////Action<T> -16 param void - System List<T> ForEach() //Action also work like Func<TResult> only different is the Select and ForEach
-            //And different it Action doesn't return a function it void 
+            //And one more different is that Action doesn't return a function it void 
             students.ForEach(myFunc1);
         }
     }
