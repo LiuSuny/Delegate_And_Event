@@ -29,6 +29,16 @@ namespace Collect_Delegate
         {
             Console.WriteLine( $"{st.FirstName,15} {st.LastName,15}");
         }
+
+        static bool Search_BirthDay(Student st)
+        {
+            return st.BD.Year == 2003 || st.BD.Year == 2010;
+
+        }
+        static int Compare_Student(Student s1, Student s2)
+        {
+            return s1.BD.CompareTo(s2.BD);
+        }
         static void Main(string[] args)
         {
             List<Student> students = new List<Student>
@@ -46,17 +56,33 @@ namespace Collect_Delegate
 
             //Func<TResult> - (16 param), type - T Select<TSource, TResult>
 
-            IEnumerable<string> group = students.Select( myFunc);
-            foreach (string item in group)
-            {
-                Console.WriteLine(item);
-            }
+            //IEnumerable<string> group = students.Select( myFunc);
+            //foreach (string item in group)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
-            Console.WriteLine("++++++++++++++++++");
+            //Console.WriteLine("++++++++++++++++++");
 
             ////Action<T> -16 param void - System List<T> ForEach() //Action also work like Func<TResult> only different is the Select and ForEach
             //And one more different is that Action doesn't return a function it void 
-            students.ForEach(myFunc1);
+            //students.ForEach(myFunc1);
+
+           // Console.WriteLine("++++++++++++++++++");
+            //Predicate<T> bool
+            List<Student> new_st = students.FindAll(Search_BirthDay);
+            foreach(Student item in new_st)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("++++++++++++++++++");
+            //Comparison<T> -2 param - int sort(comparison<T>)
+
+            students.Sort(Compare_Student);
+            foreach (Student item in students)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
